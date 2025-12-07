@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICME 2026 Special Session Flyer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0a0e17; 
+            font-family: 'Roboto', sans-serif;
+            color: #e0e0e0; 
+            -webkit-font-smoothing: antialiased;
+            
+            /* 【相对路径】请确保 photos 文件夹在同一目录下 */
+            background-image: url('./photos/background.png'); 
+            
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .flyer-container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: rgba(16, 24, 39, 0.85); 
+            box-shadow: 0 0 30px rgba(0, 191, 255, 0.2), 0 0 10px rgba(0, 191, 255, 0.1) inset; 
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid rgba(0, 191, 255, 0.3); 
+            backdrop-filter: blur(10px); 
+        }
+
+        .header-section {
+            text-align: center;
+            padding: 50px 40px 30px 40px;
+            position: relative;
+        }
+
+        .header-icon {
+            width: 280px; 
+            max-width: 80%; 
+            height: auto;   
+            margin-bottom: 25px;
+            filter: drop-shadow(0 0 15px rgba(0, 191, 255, 0.6)); 
+            transition: transform 0.3s ease; 
+        }
+        
+        .header-icon:hover {
+            transform: scale(1.05);
+        }
+
+        h1 {
+            font-size: 34px;
+            font-weight: 700;
+            margin: 0 0 15px 0;
+            color: #ffffff;
+            line-height: 1.2;
+            text-transform: capitalize;
+            text-shadow: 0 0 10px rgba(0, 191, 255, 0.5); 
+        }
+
+        .meta-info {
+            font-size: 18px;
+            font-weight: 500;
+            color: #b0c4de; 
+            margin-bottom: 10px;
+            line-height: 1.6; 
+        }
+
+        .meta-info a {
+            color: #00bfff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            border-bottom: 1px dashed rgba(0, 191, 255, 0.5);
+        }
+
+        .meta-info a:hover {
+            color: #ffffff;
+            border-bottom: 1px solid #ffffff;
+        }
+
+        .content-wrapper {
+            padding: 40px;
+            background: transparent; 
+        }
+
+        .white-card {
+            background: rgba(255, 255, 255, 0.05); 
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: none; 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #00bfff; 
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 0 8px rgba(0, 191, 255, 0.4); 
+        }
+
+        p {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #d0d0d0;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .topics-container {
+            column-count: 2;
+            column-gap: 40px;
+        }
+
+        @media (max-width: 600px) {
+            .topics-container {
+                column-count: 1;
+            }
+        }
+
+        .topic-item {
+            font-size: 13px;
+            line-height: 1.5;
+            color: #e0e0e0;
+            margin-bottom: 8px;
+            font-family: 'Roboto', sans-serif;
+            break-inside: avoid;
+        }
+
+        .topic-code {
+            font-weight: 700;
+            color: #00bfff; 
+            margin-right: 5px;
+            font-size: 11px;
+            white-space: nowrap;
+        }
+
+        .organizers-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .organizer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .org-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #1a2a3a; 
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid rgba(0, 191, 255, 0.4); 
+            box-shadow: 0 0 15px rgba(0, 191, 255, 0.3); 
+        }
+
+        .org-name {
+            font-weight: 700;
+            font-size: 16px;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .org-affil {
+            font-size: 13px;
+            color: #b0c4de;
+            line-height: 1.3;
+            margin-bottom: 5px; /* 增加底部间距给邮箱 */
+        }
+
+        /* 修改：邮箱样式 */
+        .org-email {
+            font-size: 12px;
+            color: #ffffff; /* 默认为白色 */
+            margin-top: 2px;
+            word-break: break-all; /* 防止长邮箱撑破布局 */
+        }
+        
+        .org-email a {
+            color: inherit; /* 链接颜色继承父元素（白色） */
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .org-email a:hover {
+            color: #00bfff; /* 悬停时变回蓝色，增加交互感 */
+            text-decoration: underline;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(0, 191, 255, 0.5), transparent); 
+            margin: 40px 0;
+        }
+
+        @media (max-width: 768px) {
+            .flyer-container { margin: 0; border-radius: 0; }
+            .header-section { padding: 40px 20px; }
+            h1 { font-size: 24px; }
+            .content-wrapper { padding: 20px; }
+            .white-card { padding: 20px; }
+            .organizers-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .organizers-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="flyer-container">
+        <!-- Header Section -->
+        <div class="header-section">
+            <!-- 相对路径引用图标 -->
+            <img src="./photos/icme-icon.png" alt="Conference Icon" class="header-icon">
+            
+            <h1>Special Session: Intelligent Media and Autonomous Agents for Resilient Food Systems</h1>
+            
+            <div class="meta-info">
+                Submission: <a href="https://cmt3.research.microsoft.com/IEEEICME2026" target="_blank">https://cmt3.research.microsoft.com/IEEEICME2026</a><br>
+                Submission Deadline: 12 December <span style="color: #ff4444; font-weight: 700;">(May be extended)</span>
+            </div>
+        </div>
+
+        <div class="content-wrapper">
+            <div class="white-card">
+                
+                <h2>Aim and Scope</h2>
+                <p>
+                    Echoing the ICME 2026 theme of "Beyond Perception," this special session aims to push the boundaries of how intelligent systems interact with the physical world. While traditional multimedia technologies excel at observation, the complex and dynamic nature of global food systems requires a paradigm shift: from passive sensing to active, autonomous understanding and decision-making. We seek to explore the transformative potential where advanced AI agents not only perceive data but act upon it to ensure resilience, safety, and efficiency in an increasingly volatile environment.
+                </p>
+                <p>
+                    The modern food ecosystem serves as a critical testbed for this technological evolution, offering rich challenges that span the entire spectrum of intelligent computing. From the microscopic analysis of biological spoilage using hyperspectral imaging to the macroscopic orchestration of global logistics via digital twins, the domain demands a holistic integration of technologies. We recognize that building resilient systems requires contributions from every layer of the technical stack—whether it involves enhancing sensor robustness in noisy industrial settings, developing zero-trust verification via blockchain, or creating large multimodal models (LMMs) for consumer interaction.
+                </p>
+                <p>
+                    Consequently, our scope is intentionally broad and interdisciplinary. We invite researchers and practitioners to submit work that applies any facet of intelligent media or autonomous agents to the food and agricultural domain. We welcome innovations that address technical challenges in perception, cognition, and action, as well as those tackling systemic issues such as regulation, ethics, and sustainability. Whether your research focuses on precision agriculture, automated manufacturing, supply chain transparency, or personalized health, this session provides a premier forum for all efforts dedicated to securing the future of our food systems through intelligence.
+                </p>
+
+                <hr>
+
+                <h2>Main Topics</h2>
+                <div class="topics-container">
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> Advanced Sensing & Perception</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> Agricultural Intelligence & Smart Farming</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> Agricultural Robotics & Automation</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> AI for Food Safety & Quality</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> Autonomous Logistics & Delivery</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> Big Data Analytics & Prediction</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> Blockchain for Traceability</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> Computational Gastronomy</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> Computer Vision for Food</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> Consumer Behavior & HCI</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> Cross-Modal Fusion</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> Digital Twins & Simulation</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> Edge Computing & IoT</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> Federated Learning for Privacy</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> Food Computing</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> Food Fraud Detection</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> Food Knowledge Graphs</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> Generative AI & LMMs</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> Human-Robot Collaboration</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> Hyperspectral/Multispectral Imaging</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> AI for Food Regulation & Policy</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> Automated Compliance Monitoring</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> Ethical AI & Governance in Food</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> Regulatory Tech (RegTech) for Food</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> Standardization of Food Data</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> Intelligent Packaging</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> Livestock Monitoring</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> Non-Destructive Testing (NDT)</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> Personalized Nutrition</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> Precision Agriculture</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> Remote Sensing</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> Smart Retail & Vending</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> Smart Warehousing</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> Supply Chain Optimization</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> Sustainability & Waste Reduction</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> Trust, Security & Privacy</div>
+                    <div class="topic-item"><span class="topic-code">IMAA-RFS:</span> UAVs & Drones in Agriculture</div>
+                </div>
+
+                <hr>
+
+                <h2>Organization Committee</h2>
+                <div class="organizers-grid">
+                    
+                    <div class="organizer">
+                        <img src="./photos/Hao.png" alt="Zhihao Hao" class="org-photo">
+                        <div class="org-name">Zhihao Hao</div>
+                        <div class="org-affil">Beijing Technology and Business University</div>
+                        <div class="org-email"><a href="mailto:zhihao.hao@btbu.edu.cn">zhihao.hao@btbu.edu.cn</a></div>
+                    </div>
+
+                    <div class="organizer">
+                        <img src="./photos/Bob.png" alt="Bob Zhang" class="org-photo">
+                        <div class="org-name">Bob Zhang</div>
+                        <div class="org-affil">University of Macau</div>
+                        <div class="org-email"><a href="mailto:bobzhang@um.edu.mo">bobzhang@um.edu.mo</a></div>
+                    </div>
+
+                    <div class="organizer">
+                        <img src="./photos/Cao.png" alt="Longbing Cao" class="org-photo">
+                        <div class="org-name">Longbing Cao</div>
+                        <div class="org-affil">Macquarie University</div>
+                        <div class="org-email"><a href="mailto:longbing.cao@mq.edu.au">longbing.cao@mq.edu.au</a></div>
+                    </div>
+
+                    <div class="organizer">
+                        <img src="./photos/David.png" alt="David Zhang" class="org-photo">
+                        <div class="org-name">David Zhang</div>
+                        <div class="org-affil">Chinese University of Hong Kong, Shenzhen</div>
+                        <div class="org-email"><a href="mailto:davidzhang@cuhk.edu.cn">davidzhang@cuhk.edu.cn</a></div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
